@@ -1,0 +1,14 @@
+﻿<w:FlatWindow x:Class="QLBanSach.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:w="clr-namespace:FlatTheme.ControlStyle;assembly=FlatTheme"
+        xmlns:local="clr-namespace:QLBanSach"
+        mc:Ignorable="d"
+        Title="Window1" Height="300" Width="300" Style="{DynamicResource FlatWindow}" Topmost="True" SnapsToDevicePixels="True" WindowStyle="ThreeDBorderWindow">
+    <Grid Background="White">
+        <Label x:Name="label" Content="ĐĂNG NHẬP" HorizontalAlignment="Left" Margin="35,112,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="33.333" FontWeight="Bold"/>
+
+    </Grid>
+</w:FlatWindow>
