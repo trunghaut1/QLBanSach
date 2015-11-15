@@ -184,6 +184,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\Documents\Visual Studio 2015\Projects\FlatTheme\FlatTheme\FlatTheme.csproj">
+      <Project>{dd9b70ef-db16-449b-91fb-6abb7b0f08dd}</Project>
+      <Name>FlatTheme</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
