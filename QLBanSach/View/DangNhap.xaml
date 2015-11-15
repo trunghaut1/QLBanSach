@@ -12,6 +12,6 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="ĐĂNG NHẬP" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="33.333"/>
+        <Label Grid.Row="0" Content="ĐĂNG NHẬP" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="33.333" FontWeight="Bold"/>
     </Grid>
 </UserControl>

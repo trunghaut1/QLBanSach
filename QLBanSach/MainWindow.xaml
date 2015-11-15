@@ -22,8 +22,6 @@
                 <MenuItem Header="ĐĂNG XUẤT"/>
             </Menu>
         </Grid>
-        <Grid x:Name="MainGrid">
-            <Label x:Name="label" Content="ĐĂNG NHẬP" HorizontalAlignment="Left" Margin="430,128,0,0" VerticalAlignment="Top" FontSize="33.333" FontWeight="Bold" Foreground="Black"/>
-        </Grid>
+        <Grid x:Name="MainGrid"/>
     </DockPanel>
 </theme:FlatWindow>

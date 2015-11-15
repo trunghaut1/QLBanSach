@@ -12,7 +12,7 @@ namespace QLBanSach
         public MainWindow()
         {
             InitializeComponent();
-            //MainGrid.Children.Add(new DangNhap());
+            MainGrid.Children.Add(new DangNhap());
         }
     }
 }

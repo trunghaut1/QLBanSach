@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLBanSach", "QLBanSach\QLBanSach.csproj", "{3E47D108-5D66-420D-8F70-90A6E268CB49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatTheme", "E:\Documents\Visual Studio 2015\Projects\FlatTheme\FlatTheme\FlatTheme.csproj", "{DD9B70EF-DB16-449B-91FB-6ABB7B0F08DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatTheme", "FlatTheme\FlatTheme.csproj", "{DD9B70EF-DB16-449B-91FB-6ABB7B0F08DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
