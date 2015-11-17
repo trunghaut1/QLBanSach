@@ -48,7 +48,7 @@
             <Button Width="130" Height="40" Content="Thêm" x:Name="btnAdd" Grid.Column="0" Click="btnAdd_Click" />
             <Button Width="130" Height="40" Content="Cập nhật" x:Name="btnUpdate" Grid.Column="1" Click="btnUpdate_Click" />
             <Button Width="130" Height="40" Content="Xóa" x:Name="btnDelete" Grid.Column="2" Click="btnDelete_Click" />
-            <Button Width="130" Height="40" Content="Xóa trắng" x:Name="btnReset" Grid.Column="3" Click="btnReset_Click" />
+            <Button Width="130" Height="40" Content="Làm mới" x:Name="btnReset" Grid.Column="3" Click="btnReset_Click" />
         </Grid>
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
             <Viewbox Width="25" Height="25" Margin="20,0">

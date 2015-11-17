@@ -1,4 +1,5 @@
-﻿using QLBanSach.BLL;
+﻿using FlatTheme.ControlStyle;
+using QLBanSach.BLL;
 using QLBanSach.DAL;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace QLBanSach.View
         public SachView()
         {
             InitializeComponent();
-            LoadComboBox();
-            LoadSearch();
+            LoadComboBox(true,true,true);
+            LoadSearch(true,true,true);
             LoadDS(null);          
         }
 
@@ -137,14 +138,14 @@ namespace QLBanSach.View
         {
             ResetSearch();
         }
-        private void LoadSearch()
+        private void LoadSearch(bool _loai, bool _tacgia, bool _nxb)
         {
             var loaisach = new LoaiSachBLL();
             var tacgia = new TacGiaBLL();
             var nxb = new NXBBLL();
-            loaiSachS.ItemsSource = loaisach.GetAll();
-            tacGiaS.ItemsSource = tacgia.GetAll();
-            nXBS.ItemsSource = nxb.GetAll();
+            if (_loai) loaiSachS.ItemsSource = loaisach.GetAll();
+            if (_tacgia) tacGiaS.ItemsSource = tacgia.GetAll();
+            if (_nxb) nXBS.ItemsSource = nxb.GetAll();
         }
         private void ResetSearch()
         {
@@ -180,14 +181,14 @@ namespace QLBanSach.View
                 myCollectionViewSource.Source = value ?? _db.GetAll();
              }
         }
-        private void LoadComboBox()
+        private void LoadComboBox(bool _loai, bool _tacgia, bool _nxb)
         {
             var loaisach = new LoaiSachBLL();
             var tacgia = new TacGiaBLL();
             var nxb = new NXBBLL();
-            loaiSachComboBox.ItemsSource = loaisach.GetAll();
-            tacGiaComboBox.ItemsSource = tacgia.GetAll();
-            nXBComboBox.ItemsSource = nxb.GetAll();
+            if(_loai) loaiSachComboBox.ItemsSource = loaisach.GetAll();
+            if (_tacgia) tacGiaComboBox.ItemsSource = tacgia.GetAll();
+            if (_nxb) nXBComboBox.ItemsSource = nxb.GetAll();
         }
 
         private void sachDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -223,6 +224,71 @@ namespace QLBanSach.View
         {
             ComboBox cbx = (ComboBox)sender;
             if (cbx.SelectedIndex != -1) Search();
+        }
+
+        private void btnAddTacGia_Click(object sender, RoutedEventArgs e)
+        {
+            FlatWindow window = new FlatWindow()
+            {
+                Title = "Quản lý tác giả",
+                Name = "TacGia",
+                Content = new TacGiaView(),
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                FontSize = 16
+            };
+            window.Style = Application.Current.FindResource("FlatWindow") as Style;
+            window.Closed += new EventHandler(AddWindow_Closed);
+            window.ShowDialog();
+
+        }
+        private void AddWindow_Closed(object sender, EventArgs e)
+        {
+            FlatWindow window = (FlatWindow)sender;
+            if(window.Name == "TacGia")
+            {
+                LoadComboBox(false, true, false);
+                LoadSearch(false, true, false);
+            }
+            if (window.Name == "LoaiSach")
+            {
+                LoadComboBox(true, false, false);
+                LoadSearch(true, false, false);
+            }
+            if (window.Name == "NXB")
+            {
+                LoadComboBox(false, false, true);
+                LoadSearch(false, false, true);
+            }
+        }
+
+        private void btnAddNXB_Click(object sender, RoutedEventArgs e)
+        {
+            FlatWindow window = new FlatWindow()
+            {
+                Title = "Quản nhà xuất bản",
+                Name = "NXB",
+                Content = new NXBView(),
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                FontSize = 16
+            };
+            window.Style = Application.Current.FindResource("FlatWindow") as Style;
+            window.Closed += new EventHandler(AddWindow_Closed);
+            window.ShowDialog();
+        }
+
+        private void btnAddLoaiSach_Click(object sender, RoutedEventArgs e)
+        {
+            FlatWindow window = new FlatWindow()
+            {
+                Title = "Quản lý loại sách",
+                Name = "LoaiSach",
+                Content = new LoaiSachView(),
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                FontSize = 16
+            };
+            window.Style = Application.Current.FindResource("FlatWindow") as Style;
+            window.Closed += new EventHandler(AddWindow_Closed);
+            window.ShowDialog();
         }
     }
 }

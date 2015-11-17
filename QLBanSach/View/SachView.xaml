@@ -47,23 +47,33 @@
             <TextBox x:Name="txtTenSach" Grid.Column="1" Grid.Row="0" Margin="10,0" />
             <Label Content="Nhà xuất bản: " HorizontalAlignment="Right" Grid.Column="4" Grid.Row="0" />
             <Label Content="Tác giả: " Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right"/>
-            <Grid Grid.Column="3" Grid.Row="0" DataContext="{StaticResource tacGiaViewSource}">
-                <ComboBox x:Name="tacGiaComboBox" DisplayMemberPath="TenTacGia" ItemsSource="{Binding}" SelectedValuePath="MaTacGia" Margin="10,0" Tag="Tác giả" IsEditable="True">
-                    <ComboBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel/>
-                        </ItemsPanelTemplate>
-                    </ComboBox.ItemsPanel>
-                </ComboBox>
+            <Grid Grid.Column="3" Grid.Row="0" DataContext="{StaticResource tacGiaViewSource}" VerticalAlignment="Top">
+                <ComboBox x:Name="tacGiaComboBox" DisplayMemberPath="TenTacGia" ItemsSource="{Binding}" SelectedValuePath="MaTacGia" Margin="10,0,35,0" Tag="Tác giả" IsEditable="True">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                <Button x:Name="btnAddTacGia" Style="{DynamicResource CircleButton}" Width="25" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Thêm tác giả" Click="btnAddTacGia_Click">
+                    <Viewbox Width="13" Height="13">
+                        <Path Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" Fill="{DynamicResource BackgroundColor}" Stretch="Fill"/>
+                    </Viewbox>
+                </Button>
             </Grid>
-            <Grid Grid.Column="5" Grid.Row="0" DataContext="{StaticResource nXBViewSource}">
-                <ComboBox x:Name="nXBComboBox" DisplayMemberPath="TenNXB" ItemsSource="{Binding}" IsEditable="True" Margin="10,0" SelectedValuePath="MaNXB" Tag="Nhà xuất bản">
+            <Grid Grid.Column="5" Grid.Row="0" DataContext="{StaticResource nXBViewSource}" VerticalAlignment="Top">
+                <ComboBox x:Name="nXBComboBox" DisplayMemberPath="TenNXB" ItemsSource="{Binding}" IsEditable="True" Margin="10,0,35,0" SelectedValuePath="MaNXB" Tag="Nhà xuất bản">
                     <ComboBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <VirtualizingStackPanel/>
                         </ItemsPanelTemplate>
                     </ComboBox.ItemsPanel>
                 </ComboBox>
+                <Button x:Name="btnAddNXB" Style="{DynamicResource CircleButton}" Width="25" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Thêm NXB" Click="btnAddNXB_Click">
+                    <Viewbox Width="13" Height="13">
+                        <Path Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" Fill="{DynamicResource BackgroundColor}" Stretch="Fill"/>
+                    </Viewbox>
+                </Button>
             </Grid>
             <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6">
                 <Grid.ColumnDefinitions>
@@ -84,13 +94,18 @@
                 <Label Content="Đơn giá: " HorizontalAlignment="Right" Grid.Column="6"/>
                 <TextBox x:Name="txtDonGia" Grid.Column="7" Margin="10,0" PreviewTextInput="NumberOnly"/>
                 <Grid Grid.Column="3" DataContext="{StaticResource loaiSachViewSource}">
-                    <ComboBox x:Name="loaiSachComboBox" DisplayMemberPath="TenLoai" ItemsSource="{Binding Source={StaticResource loaiSachViewSource}}" SelectedValuePath="MaLoai" Tag="Loại sách" IsEditable="True" Margin="10,0">
+                    <ComboBox x:Name="loaiSachComboBox" DisplayMemberPath="TenLoai" ItemsSource="{Binding Source={StaticResource loaiSachViewSource}}" SelectedValuePath="MaLoai" Tag="Loại sách" IsEditable="True" Margin="10,0,35,0">
                         <ComboBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel/>
                             </ItemsPanelTemplate>
                         </ComboBox.ItemsPanel>
                     </ComboBox>
+                    <Button x:Name="btnAddLoaiSach" Style="{DynamicResource CircleButton}" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="Thêm loại sách" Click="btnAddLoaiSach_Click">
+                        <Viewbox Width="13" Height="13">
+                            <Path Data="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" Fill="{DynamicResource BackgroundColor}" Stretch="Fill"/>
+                        </Viewbox>
+                    </Button>
                 </Grid>
             </Grid>
         </Grid>
