@@ -7,15 +7,13 @@ namespace QLBanSach.BLL
 {
     public class NXBBLL
     {
+        QLBanSachEntities db = new QLBanSachEntities();
         // Lấy danh sách NXB
         public List<NXB> GetAll()
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    return db.NXB.ToList();
-                }
+                return db.NXB.ToList();
             }
             catch (Exception e)
             {
@@ -28,11 +26,8 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    NXB record = db.NXB.SingleOrDefault(v => v.MaNXB == id);
-                    return record;
-                }
+                NXB record = db.NXB.SingleOrDefault(v => v.MaNXB == id);
+                return record;
             }
             catch (Exception e)
             {
@@ -45,12 +40,9 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    db.NXB.Add(value);
-                    db.SaveChanges();
-                    return true;
-                }
+                db.NXB.Add(value);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -63,13 +55,10 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    NXB record = db.NXB.SingleOrDefault(v => v.MaNXB == value.MaNXB);
-                    record.TenNXB = value.TenNXB;
-                    db.SaveChanges();
-                    return true;
-                }
+                NXB record = db.NXB.SingleOrDefault(v => v.MaNXB == value.MaNXB);
+                record.TenNXB = value.TenNXB;
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -82,13 +71,10 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    NXB record = db.NXB.SingleOrDefault(v => v.MaNXB == id);
-                    db.NXB.Remove(record);
-                    db.SaveChanges();
-                    return true;
-                }
+                NXB record = db.NXB.SingleOrDefault(v => v.MaNXB == id);
+                db.NXB.Remove(record);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -101,17 +87,29 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    var record = from r in db.NXB select r;
-                    if (ten != null) record = record.Where(r => r.TenNXB.Contains(ten));
-                    return record.ToList();
-                }
+                var record = from r in db.NXB select r;
+                if (ten != null) record = record.Where(r => r.TenNXB.Contains(ten));
+                return record.ToList();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return null;
+            }
+        }
+        // Kiểm tra có tồn tại sách mang mã nhà xuất bản này hay không
+        public bool CheckFK(int id)
+        {
+            try
+            {
+                int record = (from r in db.Sach where r.MaNXB == id select r).Count();
+                if (record > 0) return false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
             }
         }
     }

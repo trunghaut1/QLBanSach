@@ -1,0 +1,62 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QLBanSach.View"
+             xmlns:DAL="clr-namespace:QLBanSach.DAL" x:Class="QLBanSach.View.NXBView"
+             mc:Ignorable="d" 
+             d:DesignHeight="564" d:DesignWidth="984" >
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="nXBViewSource" d:DesignSource="{d:DesignInstance {x:Type DAL:NXB}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Viewbox Width="25" Height="25">
+                <Path Data="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z" Fill="{DynamicResource MainColor}" Stretch="Fill"/>
+            </Viewbox>
+            <Label Content="NHÀ XUẤT BẢN" FontSize="20" FontWeight="Bold"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Mã nhà xuất bản: " Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtMaNXB"  Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Width="350" HorizontalAlignment="Left" IsReadOnly="True"/>
+            <Label Content="Tên nhà xuất bản: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"/>
+            <TextBox x:Name="txtTenNXB" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Width="350"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Width="130" Height="40" Content="Thêm" x:Name="btnAdd" Grid.Column="0" Click="btnAdd_Click" />
+            <Button Width="130" Height="40" Content="Cập nhật" x:Name="btnUpdate" Grid.Column="1" Click="btnUpdate_Click" />
+            <Button Width="130" Height="40" Content="Xóa" x:Name="btnDelete" Grid.Column="2" Click="btnDelete_Click" />
+            <Button Width="130" Height="40" Content="Xóa trắng" x:Name="btnReset" Grid.Column="3" Click="btnReset_Click" />
+        </Grid>
+        <Grid Grid.Row="3" DataContext="{StaticResource nXBViewSource}">
+            <DataGrid x:Name="nXBDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="nXBDataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="maNXBColumn" Width="SizeToHeader" Header="Mã nhà xuất bản" Binding="{Binding MaNXB}"/>
+                    <DataGridTextColumn x:Name="tenNXBColumn" Width="300" Header="Tên nhà xuất bản" Binding="{Binding TenNXB}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</UserControl>

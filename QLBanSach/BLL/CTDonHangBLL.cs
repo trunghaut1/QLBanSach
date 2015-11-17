@@ -7,19 +7,17 @@ namespace QLBanSach.BLL
 {
     public class CTDonHangBLL
     {
+        QLBanSachEntities db = new QLBanSachEntities();
         // Lấy chi tiết đơn hàng theo mã đơn hàng
         // >> Dùng hàm Search
         public List<CTDonHang> Search(int? madonhang, int? masach)
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    var record = from r in db.CTDonHang select r;
-                    if (madonhang != null) record = record.Where(r => r.MaDonHang == madonhang);
-                    if (masach != null) record = record.Where(r => r.MaSach == masach);
-                    return record.ToList();
-                }
+                var record = from r in db.CTDonHang select r;
+                if (madonhang != null) record = record.Where(r => r.MaDonHang == madonhang);
+                if (masach != null) record = record.Where(r => r.MaSach == masach);
+                return record.ToList();
             }
             catch (Exception e)
             {
@@ -32,12 +30,9 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    db.CTDonHang.Add(value);
-                    db.SaveChanges();
-                    return true;
-                }
+                db.CTDonHang.Add(value);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -50,15 +45,12 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
+                foreach (var record in value)
                 {
-                    foreach (var record in value)
-                    {
-                        db.CTDonHang.Add(record);
-                    }
-                    db.SaveChanges();
-                    return true;
+                    db.CTDonHang.Add(record);
                 }
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -71,14 +63,11 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    CTDonHang record = db.CTDonHang.SingleOrDefault(v => v.MaDonHang == value.MaDonHang && v.MaSach == value.MaSach);
-                    record.SoLuong = value.SoLuong;
-                    record.DonGia = value.DonGia;
-                    db.SaveChanges();
-                    return true;
-                }
+                CTDonHang record = db.CTDonHang.SingleOrDefault(v => v.MaDonHang == value.MaDonHang && v.MaSach == value.MaSach);
+                record.SoLuong = value.SoLuong;
+                record.DonGia = value.DonGia;
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -91,13 +80,10 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    CTDonHang record = db.CTDonHang.SingleOrDefault(v => v.MaDonHang == madonhang && v.MaSach == masach);
-                    db.CTDonHang.Remove(record);
-                    db.SaveChanges();
-                    return true;
-                }
+                CTDonHang record = db.CTDonHang.SingleOrDefault(v => v.MaDonHang == madonhang && v.MaSach == masach);
+                db.CTDonHang.Remove(record);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {

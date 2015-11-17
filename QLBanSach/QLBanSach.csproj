@@ -70,6 +70,21 @@
     <Compile Include="View\DangNhap.xaml.cs">
       <DependentUpon>DangNhap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LoaiSachView.xaml.cs">
+      <DependentUpon>LoaiSachView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NhanVienView.xaml.cs">
+      <DependentUpon>NhanVienView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NXBView.xaml.cs">
+      <DependentUpon>NXBView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SachView.xaml.cs">
+      <DependentUpon>SachView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TacGiaView.xaml.cs">
+      <DependentUpon>TacGiaView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,6 +152,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\LoaiSachView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NhanVienView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NXBView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SachView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TacGiaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -164,6 +199,11 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\QLBanSach.DAL.LoaiSach.datasource" />
+    <None Include="Properties\DataSources\QLBanSach.DAL.NhanVien.datasource" />
+    <None Include="Properties\DataSources\QLBanSach.DAL.NXB.datasource" />
+    <None Include="Properties\DataSources\QLBanSach.DAL.Sach.datasource" />
+    <None Include="Properties\DataSources\QLBanSach.DAL.TacGia.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

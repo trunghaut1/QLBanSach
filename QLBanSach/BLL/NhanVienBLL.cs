@@ -7,15 +7,13 @@ namespace QLBanSach.BLL
 {
     public class NhanVienBLL
     {
+        QLBanSachEntities db = new QLBanSachEntities();
         // Lấy danh sách nhân viên
         public List<NhanVien> GetAll()
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    return db.NhanVien.ToList();
-                }
+                return db.NhanVien.ToList();
             }
             catch (Exception e)
             {
@@ -28,11 +26,8 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    NhanVien record = db.NhanVien.SingleOrDefault(v => v.MaNhanVien == id);
-                    return record;
-                }
+                NhanVien record = db.NhanVien.SingleOrDefault(v => v.MaNhanVien == id);
+                return record;
             }
             catch (Exception e)
             {
@@ -45,12 +40,9 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    db.NhanVien.Add(value);
-                    db.SaveChanges();
-                    return true;
-                }
+                db.NhanVien.Add(value);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -63,16 +55,13 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    NhanVien record = db.NhanVien.SingleOrDefault(v => v.MaNhanVien == value.MaNhanVien);
-                    record.TenNhanVien = value.TenNhanVien;
-                    record.SDT = value.SDT;
-                    record.QuanTri = value.QuanTri;
-                    record.MatKhau = value.MatKhau;
-                    db.SaveChanges();
-                    return true;
-                }
+                NhanVien record = db.NhanVien.SingleOrDefault(v => v.MaNhanVien == value.MaNhanVien);
+                record.TenNhanVien = value.TenNhanVien;
+                record.SDT = value.SDT;
+                record.QuanTri = value.QuanTri;
+                record.MatKhau = value.MatKhau;
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -85,13 +74,10 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    NhanVien record = db.NhanVien.SingleOrDefault(v => v.MaNhanVien == id);
-                    db.NhanVien.Remove(record);
-                    db.SaveChanges();
-                    return true;
-                }
+                NhanVien record = db.NhanVien.SingleOrDefault(v => v.MaNhanVien == id);
+                db.NhanVien.Remove(record);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -104,19 +90,32 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    var record = from r in db.NhanVien select r;
-                    if (ten != null) record = record.Where(r => r.TenNhanVien.Contains(ten));
-                    if (sdt != null) record = record.Where(r => r.SDT.Contains(sdt));
-                    if (quantri != null) record = record.Where(r => r.QuanTri.Value == quantri.Value);
-                    return record.ToList();
-                }
+                var record = from r in db.NhanVien select r;
+                if (ten != null) record = record.Where(r => r.TenNhanVien.Contains(ten));
+                if (sdt != null) record = record.Where(r => r.SDT.Contains(sdt));
+                if (quantri != null) record = record.Where(r => r.QuanTri.Value == quantri.Value);
+                return record.ToList();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return null;
+            }
+        }
+        // Kiểm tra có tồn tại đơn hàng mang mã nv này hay không
+        public bool CheckFK(int id)
+        {
+            try
+            {
+                int record1 = (from r in db.DonHang where r.MaNhanVien == id select r).Count();
+                int record2 = (from r in db.NhapHang where r.MaNhanVien == id select r).Count();
+                if (record1 > 0 || record2 > 0) return false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
             }
         }
     }

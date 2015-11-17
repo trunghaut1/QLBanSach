@@ -5,21 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLBanSach"
         xmlns:theme="clr-namespace:FlatTheme.ControlStyle;assembly=FlatTheme"
-        mc:Ignorable="d" MinHeight="650" Height="650" MinWidth="1000" Width="1000" Title="QUẢN LÝ BÁN SÁCH" Style="{DynamicResource FlatWindow}" WindowStartupLocation="CenterScreen" FontSize="14">
+        mc:Ignorable="d" MinHeight="650" Height="650" MinWidth="1000" Width="1100" Title="QUẢN LÝ BÁN SÁCH" Style="{DynamicResource FlatWindow}" WindowStartupLocation="CenterScreen" FontSize="16">
     <DockPanel>
         <Grid x:Name="MenuGrid" DockPanel.Dock="Top">
-            <Menu>
+            <Menu x:Name="MainMenu">
                 <MenuItem Header="QUẢN LÝ SÁCH">
-                    <MenuItem Header="LOẠI SÁCH"/>
-                    <MenuItem Header="TÁC GIẢ"/>
-                    <MenuItem Header="NHÀ XUẤT BẢN"/>
-                    <MenuItem Header="SÁCH"/>
+                    <MenuItem x:Name="mnLoaiSach" Header="LOẠI SÁCH" Click="mnLoaiSach_Click"/>
+                    <MenuItem x:Name="mnTacGia" Header="TÁC GIẢ" Click="mnTacGia_Click"/>
+                    <MenuItem x:Name="mnNXB" Header="NHÀ XUẤT BẢN" Click="mnNXB_Click"/>
+                    <MenuItem x:Name="mnSach" Header="SÁCH" Click="mnSach_Click"/>
                 </MenuItem>
-                <MenuItem Header="QUẢN LÝ NHÂN VIÊN"/>
-                <MenuItem Header="QUẢN BÁN HÀNG"/>
-                <MenuItem Header="QUẢN NHẬP HÀNG"/>
+                <MenuItem x:Name="mnNhanVien" Header="QUẢN LÝ NHÂN VIÊN"  Click="mnNhanVien_Click"/>
+                <MenuItem Header="QUẢN LÝ BÁN HÀNG"/>
+                <MenuItem Header="QUẢN LÝ NHẬP HÀNG"/>
                 <MenuItem Header="THỐNG KÊ"/>
-                <MenuItem Header="ĐĂNG XUẤT"/>
+                <MenuItem x:Name="mnDangXuat" Header="ĐĂNG XUẤT" Click="mnDangXuat_Click"/>
             </Menu>
         </Grid>
         <Grid x:Name="MainGrid"/>

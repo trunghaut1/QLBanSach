@@ -2,20 +2,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace QLBanSach.BLL
 {
     public class TacGiaBLL
     {
+        QLBanSachEntities db = new QLBanSachEntities();
         // Lấy danh sách tác giả
         public List<TacGia> GetAll()
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    return db.TacGia.ToList();
-                }
+                return db.TacGia.ToList();
             }
             catch (Exception e)
             {
@@ -28,11 +27,8 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    TacGia record = db.TacGia.SingleOrDefault(v => v.MaTacGia == id);
-                    return record;
-                }
+                TacGia record = db.TacGia.SingleOrDefault(v => v.MaTacGia == id);
+                return record;
             }
             catch (Exception e)
             {
@@ -45,12 +41,9 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    db.TacGia.Add(value);
-                    db.SaveChanges();
-                    return true;
-                }
+                db.TacGia.Add(value);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -63,13 +56,10 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    TacGia record = db.TacGia.SingleOrDefault(v => v.MaTacGia == value.MaTacGia);
-                    record.TenTacGia = value.TenTacGia;
-                    db.SaveChanges();
-                    return true;
-                }
+                TacGia record = db.TacGia.SingleOrDefault(v => v.MaTacGia == value.MaTacGia);
+                record.TenTacGia = value.TenTacGia;
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -82,13 +72,10 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    TacGia record = db.TacGia.SingleOrDefault(v => v.MaTacGia == id);
-                    db.TacGia.Remove(record);
-                    db.SaveChanges();
-                    return true;
-                }
+                TacGia record = db.TacGia.SingleOrDefault(v => v.MaTacGia == id);
+                db.TacGia.Remove(record);
+                db.SaveChanges();
+                return true;
             }
             catch (Exception e)
             {
@@ -101,17 +88,29 @@ namespace QLBanSach.BLL
         {
             try
             {
-                using (var db = new QLBanSachEntities())
-                {
-                    var record = from r in db.TacGia select r;
-                    if (ten != null) record = record.Where(r => r.TenTacGia.Contains(ten));
-                    return record.ToList();
-                }
+                var record = from r in db.TacGia select r;
+                if (ten != null) record = record.Where(r => r.TenTacGia.Contains(ten));
+                return record.ToList();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return null;
+            }
+        }
+        // Kiểm tra có tồn tại sách mang tác giả này hay không
+        public bool CheckFK(int id)
+        {
+            try
+            {
+                int record = (from r in db.Sach where r.MaTacGia == id select r).Count();
+                if (record > 0) return false;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
             }
         }
     }
